@@ -17,6 +17,7 @@ def heap_building(arr, n, i):
 
 
 def heap_sort(arr):
+    arr = list(arr)
     n = len(arr)
     for i in range(n // 2 - 1, -1, -1):
         heap_building(arr, n, i)

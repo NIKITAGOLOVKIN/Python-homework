@@ -1,12 +1,29 @@
-from quick_sort import separation, quick_sort
-from bubble_sort import bubble_sort
+from src.merge_sort import merge, merge_sort
+from src.bubble_sort import bubble_sort
 
-def test_separation():
-    arr = [10, 5, 3, 2, 4]
-    separation(arr, 0, len(arr) - 1)
-    assert arr == [3, 2, 4, 5, 10]
+def test_merge_arr_with_one_element():
+    arr1 = [1]
+    arr2 = [2]
+    res = merge(arr1, arr2)
+    assert res == [1, 2]
 
-def test_quick_sort_basic():
+    arr1 = [2]
+    arr2 = [1]
+    res = merge(arr1, arr2)
+    assert res == [1, 2]
+
+def test_merge_arr_with_two_element():
+    arr1 = [1, 2]
+    arr2 = [3, 4]
+    res = merge(arr1, arr2)
+    assert res == [1, 2, 3, 4]
+
+    arr1 = [1, 4]
+    arr2 = [2, 3]
+    res = merge(arr1, arr2)
+    assert res == [1, 2, 3, 4]
+
+def test_merge_sort_basic():
     test_cases = [
         [4, 2, 1, 3],
         [1, 3, 2],
@@ -15,17 +32,17 @@ def test_quick_sort_basic():
 
     for arr in test_cases:
         expected = sorted(arr)
-        quick_sort(arr, 0, len(arr) - 1)
+        arr = merge_sort(arr)
         assert arr == expected
 
 def test_empty_array():
     arr = []
-    quick_sort(arr, 0, len(arr) - 1)
+    arr = merge_sort(arr)
     assert arr == []
 
 def test_single_element():
     arr = [42]
-    quick_sort(arr, 0, len(arr) - 1)
+    arr = merge_sort(arr)
     assert arr == [42]
 
 def test_two_elements():
@@ -37,16 +54,16 @@ def test_two_elements():
 
     for arr in test_cases:
         expected = sorted(arr)
-        quick_sort(arr, 0, len(arr) - 1)
+        arr = merge_sort(arr)
         assert arr == expected
 
 def test_already_sorted():
     arr = [1, 2, 3, 4, 5]
-    quick_sort(arr, 0, len(arr) - 1)
+    arr = merge_sort(arr)
     assert arr == [1, 2, 3, 4, 5]
 
     arr = [5, 4, 3, 2, 1]
-    quick_sort(arr, 0, len(arr) - 1)
+    arr = merge_sort(arr)
     assert arr == [1, 2, 3, 4, 5]
 
 def test_all_identical():
@@ -58,7 +75,7 @@ def test_all_identical():
 
     for arr in test_cases:
         expected = arr
-        quick_sort(arr, 0, len(arr) - 1)
+        arr = merge_sort(arr)
         assert arr == expected
 
 def test_with_duplicates():
@@ -70,7 +87,7 @@ def test_with_duplicates():
 
     for arr in test_cases:
         expected = sorted(arr)
-        quick_sort(arr, 0, len(arr) - 1)
+        arr = merge_sort(arr)
         assert arr == expected
 
 def test_negative_numbers():
@@ -82,15 +99,15 @@ def test_negative_numbers():
 
     for arr in test_cases:
         expected = sorted(arr)
-        quick_sort(arr, 0, len(arr) - 1)
+        arr = merge_sort(arr)
         assert arr == expected
 
 def test_floats():
     arr = [3.14, 1.41, 2.71, 0.0, -1.0]
     expected = sorted(arr)
-    quick_sort(arr, 0, len(arr) - 1)
+    arr = merge_sort(arr)
     assert arr == expected
 
 def test_against_other_sorts():
         arr = [1, 5, 2, 4, 3]
-        assert bubble_sort(arr) == quick_sort(arr, 0, len(arr) - 1)
+        assert bubble_sort(arr) == merge_sort(arr)

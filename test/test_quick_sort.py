@@ -1,21 +1,8 @@
-from heap_sort import heap_building, heap_sort
-from bubble_sort import bubble_sort
+from src.quick_sort import _separation, _quick_sort, quick_sort
+from src.bubble_sort import bubble_sort
 
-def test_heap_building_basic():
-    arr = [10, 5, 3, 2, 4]
-    heap_building(arr, len(arr), 0)
-    assert arr == [10, 5, 3, 2, 4]
 
-    arr = [3, 10, 5, 2, 4]
-    heap_building(arr, len(arr), 0)
-    assert arr == [10, 4, 5, 2, 3]
-
-def test_heap_building_with_limit():
-    arr = [10, 20, 5, 30, 40]
-    heap_building(arr, 3, 0)
-    assert arr[:3] == [20, 10, 5]
-
-def test_heap_sort_basic():
+def test_quick_sort_basic():
     test_cases = [
         [4, 2, 1, 3],
         [1, 3, 2],
@@ -24,17 +11,17 @@ def test_heap_sort_basic():
 
     for arr in test_cases:
         expected = sorted(arr)
-        heap_sort(arr)
+        arr = quick_sort(arr)
         assert arr == expected
 
 def test_empty_array():
     arr = []
-    heap_sort(arr)
+    arr = quick_sort(arr)
     assert arr == []
 
 def test_single_element():
     arr = [42]
-    heap_sort(arr)
+    arr = quick_sort(arr)
     assert arr == [42]
 
 def test_two_elements():
@@ -46,16 +33,16 @@ def test_two_elements():
 
     for arr in test_cases:
         expected = sorted(arr)
-        heap_sort(arr)
+        arr = quick_sort(arr)
         assert arr == expected
 
 def test_already_sorted():
     arr = [1, 2, 3, 4, 5]
-    heap_sort(arr)
+    arr = quick_sort(arr)
     assert arr == [1, 2, 3, 4, 5]
 
     arr = [5, 4, 3, 2, 1]
-    heap_sort(arr)
+    arr = quick_sort(arr)
     assert arr == [1, 2, 3, 4, 5]
 
 def test_all_identical():
@@ -67,7 +54,7 @@ def test_all_identical():
 
     for arr in test_cases:
         expected = arr
-        heap_sort(arr)
+        arr = quick_sort(arr)
         assert arr == expected
 
 def test_with_duplicates():
@@ -79,7 +66,7 @@ def test_with_duplicates():
 
     for arr in test_cases:
         expected = sorted(arr)
-        heap_sort(arr)
+        arr = quick_sort(arr)
         assert arr == expected
 
 def test_negative_numbers():
@@ -91,15 +78,15 @@ def test_negative_numbers():
 
     for arr in test_cases:
         expected = sorted(arr)
-        heap_sort(arr)
+        arr = quick_sort(arr)
         assert arr == expected
 
 def test_floats():
     arr = [3.14, 1.41, 2.71, 0.0, -1.0]
     expected = sorted(arr)
-    heap_sort(arr)
+    arr = quick_sort(arr)
     assert arr == expected
 
 def test_against_other_sorts():
         arr = [1, 5, 2, 4, 3]
-        assert bubble_sort(arr) == heap_sort(arr)
+        assert bubble_sort(arr) == quick_sort(arr)

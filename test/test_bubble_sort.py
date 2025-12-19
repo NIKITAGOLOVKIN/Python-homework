@@ -1,4 +1,4 @@
-from bubble_sort import bubble_sort
+from src.bubble_sort import bubble_sort
 
 
 def test_bubble_sort_basic():
