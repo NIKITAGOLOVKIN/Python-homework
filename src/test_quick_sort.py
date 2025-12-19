@@ -1,5 +1,5 @@
 from quick_sort import separation, quick_sort
-
+from bubble_sort import bubble_sort
 
 def test_separation():
     arr = [10, 5, 3, 2, 4]
@@ -90,14 +90,6 @@ def test_floats():
     expected = sorted(arr)
     quick_sort(arr, 0, len(arr) - 1)
     assert arr == expected
-
-def bubble_sort(arr):
-    n = len(arr)
-    for i in range(n):
-        for j in range(n - i - 1):
-            if arr[j] > arr[j + 1]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
-    return arr
 
 def test_against_other_sorts():
         arr = [1, 5, 2, 4, 3]
